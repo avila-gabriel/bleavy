@@ -7,7 +7,7 @@ pub struct JsRuntime {
 
 impl JsRuntime {
     pub fn new() -> Self {
-        let code = fs::read_to_string("core.js").expect("Is core.js there? at root?");
+        let code = fs::read_to_string("assets/scripts/systems.txt").expect("Is systems.txt there? at assets/scripts/systems.txt?");
         let source = Source::from_bytes(&code);
 
         let mut context = Context::default();

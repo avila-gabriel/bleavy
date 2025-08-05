@@ -1,0 +1,16 @@
+{
+  "explorer.excludeGitIgnore": true,
+  "search.useIgnoreFiles": true,
+
+  "files.exclude": {
+    "**/manifest.toml": true,
+    "**/Cargo.lock": true,
+    "**/.vscode": true,
+  },
+
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/node_modules/**": true,
+    "**/target/**": true,
+  }
+}

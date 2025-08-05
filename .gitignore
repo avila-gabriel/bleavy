@@ -1,3 +1,4 @@
 /target
-core.js
---minify-syntax
+/assets/scripts
+/--minify-syntax
+/.task

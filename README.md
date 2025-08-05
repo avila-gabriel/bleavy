@@ -1,5 +1,4 @@
 ```sh
-bun build ./core/build/dev/javascript/core/core/core.mjs --outfile core.js --minify-syntax --minify-whitespace
-cargo run check_mjs
+task --watch all
 ```
-delete the export block at the end
+only works if `gleam build` is done once
