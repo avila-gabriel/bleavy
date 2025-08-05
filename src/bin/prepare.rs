@@ -1,4 +1,4 @@
-use boa_engine::{module::Module, Context, JsResult, Source};
+use boa_engine::{Context, JsResult, Source, module::Module};
 use std::fs;
 
 fn main() -> JsResult<()> {

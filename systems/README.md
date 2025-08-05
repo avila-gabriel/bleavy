@@ -1,1 +1,1 @@
-All systems facade must be declared in systems/systems.gleam with input and output as primitives flattened in tuples
+All systems facade must be declared in src/systems.gleam with all inputs and outputs using only primitive values, flattened into tuples
