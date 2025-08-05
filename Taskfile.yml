@@ -6,8 +6,6 @@ tasks:
     dir: systems
     cmds:
       - gleam build
-    sources:
-      - systems/src/**/*.gleam
 
   build-bun:
     desc: Run Bun build script
@@ -22,4 +20,6 @@ tasks:
   all:
     desc: Run everything when systems/ changes
     deps: [build-systems, build-bun, prepare]
+    sources:
+      - systems/src/**/*.gleam
     watch: true
