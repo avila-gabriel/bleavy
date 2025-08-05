@@ -4,8 +4,7 @@ use bevy::window::{PrimaryWindow, Window};
 
 #[macro_use]
 mod utils;
-
-use crate::utils::utils::*;
+use crate::utils::JsRuntime;
 
 #[derive(Component)]
 struct Velocity {
