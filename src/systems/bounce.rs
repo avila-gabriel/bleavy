@@ -15,16 +15,30 @@ pub fn bounce_sprite(
     for (mut transform, mut vel, sprite) in query.iter_mut() {
         let size = sprite.custom_size.unwrap_or(Vec2::ZERO).x;
 
-        let (x, y, vx, vy) = js_fn!(
+        let pos = vec![transform.translation.x, transform.translation.y];
+        let velocity = vec![vel.x, vel.y];
+
+        let (new_pos, new_vel): (Vec<f32>, Vec<f32>) = js_fn!(
             js,
             "bounce",
-            [x: f32 = transform.translation.x, y: f32 = transform.translation.y, vx: f32 = vel.x, vy: f32 = vel.y, size: f32 = size, win_w: f32 = half_w, win_h: f32 = half_h],
-            [f32, f32, f32, f32]
+            [
+                pos: Vec<f32> = pos,
+                vel: Vec<f32> = velocity,
+                size: f32     = size,
+                win_w: f32    = half_w,
+                win_h: f32    = half_h
+            ],
+            [Vec<f32>, Vec<f32>]
         );
 
-        transform.translation.x = x;
-        transform.translation.y = y;
-        vel.x = vx;
-        vel.y = vy;
+        if new_pos.len() == 2 {
+            transform.translation.x = new_pos[0];
+            transform.translation.y = new_pos[1];
+        }
+
+        if new_vel.len() == 2 {
+            vel.x = new_vel[0];
+            vel.y = new_vel[1];
+        }
     }
 }

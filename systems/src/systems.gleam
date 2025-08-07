@@ -1,3 +1,4 @@
+import gleam/pair
 import systems/bounce
 import systems/movement
 import types/physics.{Position, Velocity, WindowFrame}
@@ -22,21 +23,18 @@ pub fn movement(
 }
 
 pub fn bounce(
-  x: Float,
-  y: Float,
-  vx: Float,
-  vy: Float,
+  pos: #(Float, Float),
+  vel: #(Float, Float),
   size: Float,
   win_w: Float,
   win_h: Float,
-) -> #(Float, Float, Float, Float) {
-  let pos = Position(x, y)
-  let vel = Velocity(vx, vy)
+) -> #(#(Float, Float), #(Float, Float)) {
+  let pos = Position(pair.first(pos), pair.second(pos))
+  let vel = Velocity(pair.first(vel), pair.second(vel))
   let win = WindowFrame(win_w, win_h)
 
-  let #(bounced_pos, bounced_vel) = bounce.do_bounce(pos, vel, size, win)
+  let #(Position(x, y), Velocity(vx, vy)) =
+    bounce.do_bounce(pos, vel, size, win)
 
-  let Position(nx, ny) = bounced_pos
-  let Velocity(nvx, nvy) = bounced_vel
-  #(nx, ny, nvx, nvy)
+  #(#(x, y), #(vx, vy))
 }
